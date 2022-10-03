@@ -23,6 +23,8 @@ class ABCClient(BaseClient):
             response = self.requests_method(method, request_config, body)
 
         if response.status_code in [429, 500, 503]:
+            LOGGER.info(f"[Error {response.status_code}] with this "
+                        f"response:\n {response}")
             raise RateLimitException()
 
         response.raise_for_status()
