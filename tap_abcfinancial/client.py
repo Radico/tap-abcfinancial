@@ -1,5 +1,6 @@
 import singer
 import backoff
+import datetime
 
 from tap_kit import BaseClient
 
@@ -13,9 +14,10 @@ class RateLimitException(Exception):
 class ABCClient(BaseClient):
     @backoff.on_exception(backoff.expo,
                           RateLimitException,
-                          max_tries=10,
-                          factor=2)
+                          max_tries=5,
+                          factor=3)
     def make_request(self, request_config, body=None, method='GET'):
+        LOGGER.info(f"Making request at {datetime.now()}")
         LOGGER.info("Making {} request to {}".format(
             method, request_config['url']))
 
