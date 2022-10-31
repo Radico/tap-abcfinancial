@@ -1,6 +1,6 @@
 import singer
 import backoff
-import datetime
+from datetime import datetime
 
 from tap_kit import BaseClient
 
