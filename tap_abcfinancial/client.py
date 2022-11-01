@@ -22,14 +22,14 @@ class ABCClient(BaseClient):
             with singer.metrics.Timer('request_duration', {}) as timer:
                 response = self.requests_method(method, request_config, body)
 
-        if response.status_code in RETRYING_STATUS_CODES:
-            LOGGER.info(f"[Error {response.status_code}] with this "
-                        f"response:\n {response}")
-            time.sleep(delay)
-            delay *= backoff
-            attempt += 1
-        else:
-            return response
+            if response.status_code in RETRYING_STATUS_CODES:
+                LOGGER.info(f"[Error {response.status_code}] with this "
+                            f"response:\n {response}")
+                time.sleep(delay)
+                delay *= backoff
+                attempt += 1
+            else:
+                return response
 
         logger.info(f"Reached maximum retries ({retries}), failing...")
         raise ValueError("Maximum retries reached")
