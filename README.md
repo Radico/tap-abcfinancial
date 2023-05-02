@@ -21,7 +21,11 @@ Currently capable of extracting 4 streams:
 
 ## Setup
 
-`python3 setup.py install`
+### Development
+
+1. Install packages: `poetry install`
+    1. Install poetry with: `curl -sSL https://install.python-poetry.org | python3 -`
+1. Enable the virtualenv where poetry installed: `source $(poetry env info --path)/bin/activate`
 
 ## Running the tap
 
