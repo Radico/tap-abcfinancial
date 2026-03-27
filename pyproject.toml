@@ -6,9 +6,9 @@ authors = ["Simon Data"]
 license = "Apache License 2.0"
 
 [tool.poetry.dependencies]
-python = "^3.7"
-singer-python = "5.2.0"
-pendulum = "1.2.0"
+python = "^3.9"
+singer-python = "6.1.1"
+pendulum = "3.0.0"
 tap-kit = { version = "0.1.2", source="artifactory" }
 
 [[tool.poetry.source]]
